@@ -1,30 +1,28 @@
-const int DELAY_TIME = 500;
-const int POTENTIOMETER_PIN = A2;
-const int LED_PIN = 11;
-int potValue = 0;
+const int LED_PIN = 7;
+const int DELAY_TIME = 1000;
+const int POTENTIOMETER_PIN = A0;
 
 void setup()
 {
-    pinMode(RED_PIN, OUTPUT);
-    pinMode(YELLOW_PIN, OUTPUT);
     Serial.begin(9600);
+    pinMode(LED_PIN, OUTPUT);
+    pinMode(POTENTIOMETER_PIN, INPUT);
 }
 
 void loop()
 {
-    for (int i = 0; i < 3; i++)
+    int potentiometerValue = analogRead(POTENTIOMETER_PIN);
+    Serial.println(potentiometerValue);
+    delay(DELAY_TIME);
+
+    while (potentiometerValue > 1000)
     {
-        digitalWrite(YELLOW_PIN, HIGH);
-        delay(YELLOW_TIME);
-        digitalWrite(YELLOW_PIN, LOW);
-        delay(YELLOW_TIME);
+        digitalWrite(LED_PIN, HIGH);
+        Serial.println("WARNING! VOLTAGE IS HIGH!");
+        potentiometerValue = analogRead(POTENTIOMETER_PIN);
+        Serial.println(potentiometerValue);
+        delay(DELAY_TIME);
     }
 
-    for (int i = 0; i < 5; i++)
-    {
-        digitalWrite(RED_PIN, HIGH);
-        delay(RED_TIME);
-        digitalWrite(RED_PIN, LOW);
-        delay(RED_TIME);
-    }
+    digitalWrite(LED_PIN, LOW);
 }
