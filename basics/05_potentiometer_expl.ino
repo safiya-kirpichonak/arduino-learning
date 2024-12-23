@@ -1,7 +1,5 @@
 const int DELAY_TIME = 1000;
 const int VOLT_PIN = A4;
-int dataFromVoltPin;
-float actualVolt;
 
 void setup()
 {
@@ -11,8 +9,8 @@ void setup()
 
 void loop()
 {
-    dataFromVoltPin = analogRead(VOLT_PIN);
-    actualVolt = (5. / 1023.) * dataFromVoltPin;
+    int dataFromVoltPin = analogRead(VOLT_PIN);
+    float actualVolt = (5. / 1023.) * dataFromVoltPin;
     Serial.println(actualVolt);
     delay(DELAY_TIME);
 }
