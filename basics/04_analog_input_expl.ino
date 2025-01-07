@@ -1,6 +1,5 @@
-float V2 = 0;
-int const DELAY_TIME = 500;
 int const READ_PIN = A3;
+int const DELAY_TIME = 500;
 
 void setup()
 {
@@ -10,8 +9,8 @@ void setup()
 
 void loop()
 {
-    int readValue = analogRead(READ_PIN);
-    V2 = (5. / 1023.) * readValue;
+    int readValue = analogRead(READ_PIN); // from 0 to 1023
+    float V2 = (5. / 1023.) * readValue;  // real voltage from analog signal
     Serial.println(V2);
     delay(DELAY_TIME);
 }
